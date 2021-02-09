@@ -1,22 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Cours Ste-Foy\\2020-21-H2021\\W49 - Bases de données II\\Travaux\\TP1 - ORM\\DépartH2021\\W49-H2021-SolutionTP1ORM\\ProjetsORM\\ProjetsORM.csproj": {}
+    "C:\\Users\\Proprio\\Desktop\\BD2\\TP1DB2\\ProjetsORM\\ProjetsORM.csproj": {}
   },
   "projects": {
-    "C:\\Cours Ste-Foy\\2020-21-H2021\\W49 - Bases de données II\\Travaux\\TP1 - ORM\\DépartH2021\\W49-H2021-SolutionTP1ORM\\ProjetsORM\\ProjetsORM.csproj": {
+    "C:\\Users\\Proprio\\Desktop\\BD2\\TP1DB2\\ProjetsORM\\ProjetsORM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Cours Ste-Foy\\2020-21-H2021\\W49 - Bases de données II\\Travaux\\TP1 - ORM\\DépartH2021\\W49-H2021-SolutionTP1ORM\\ProjetsORM\\ProjetsORM.csproj",
+        "projectUniqueName": "C:\\Users\\Proprio\\Desktop\\BD2\\TP1DB2\\ProjetsORM\\ProjetsORM.csproj",
         "projectName": "ProjetsORM",
-        "projectPath": "C:\\Cours Ste-Foy\\2020-21-H2021\\W49 - Bases de données II\\Travaux\\TP1 - ORM\\DépartH2021\\W49-H2021-SolutionTP1ORM\\ProjetsORM\\ProjetsORM.csproj",
-        "packagesPath": "C:\\Users\\usager\\.nuget\\packages\\",
-        "outputPath": "C:\\Cours Ste-Foy\\2020-21-H2021\\W49 - Bases de données II\\Travaux\\TP1 - ORM\\DépartH2021\\W49-H2021-SolutionTP1ORM\\ProjetsORM\\obj\\",
+        "projectPath": "C:\\Users\\Proprio\\Desktop\\BD2\\TP1DB2\\ProjetsORM\\ProjetsORM.csproj",
+        "packagesPath": "C:\\Users\\Proprio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Proprio\\Desktop\\BD2\\TP1DB2\\ProjetsORM\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\usager\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Proprio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
@@ -37,6 +41,10 @@
             "Microsoft.Data.SqlClient.SNI": {
               "target": "Package",
               "version": "[1.0.19235.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",

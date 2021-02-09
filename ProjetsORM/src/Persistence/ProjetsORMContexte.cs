@@ -13,9 +13,11 @@ namespace ProjetsORM.Persistence
         #region Propriétés DBSet
         #endregion Propriétés DBSet
 
-         #region Constructeur
+        #region Constructeur
         public ProjetsORMContexte(DbContextOptions<ProjetsORMContexte> options) : base(options)
         {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
         #endregion Constructeur
 
