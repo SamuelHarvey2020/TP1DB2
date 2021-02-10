@@ -25,7 +25,7 @@ namespace ProjetsORM.AccesDonnees
 
             repoClient.AjouterClient(coveo);
 
-            Assert.Equal(coveo, repoClient.RechercherClientParNom(coveo.NomClient));
+            Assert.Equal(coveo, repoClient.ObtenirClient(coveo.NomClient));
             */
         }
 
@@ -59,7 +59,7 @@ namespace ProjetsORM.AccesDonnees
             repoClient.AjouterClient(coveo);
             repoClient.AjouterClient(spektrum);
 
-            Client clientTrouve = repoClient.RechercherClientParNom(nomClientARechercher);
+            Client clientTrouve = repoClient.ObtenirClient(nomClientARechercher);
 
             Assert.Equal(coveo, clientTrouve);
             Assert.Same(coveo, clientTrouve);

@@ -2,40 +2,52 @@
 using ProjetsORM.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjetsORM.AccesDonnees
 {
     class EFEmployeRepository
     {
         #region Propriétés
+        private ProjetsORMContexte contexte;
         #endregion Propriétés
-
+        //==============================================================================================
         #region Constructeur
-        public EFEmployeRepository(ProjetsORMContexte contexte)
+        public EFEmployeRepository(ProjetsORMContexte ctx)
         {
+            contexte = ctx;
         }
         #endregion Constructeur
-
+        //==============================================================================================
         #region Méthodes
 
         public void AjouterEmploye(Employe employe)
         {
-            throw new NotImplementedException();
+            contexte.Employes.Add(employe);
+            contexte.SaveChanges();
         }
 
-        public Employe ObtenirEmployee(short idEmploye)
+        public Employe ObtenirEmploye(short idEmploye)
         {
-            throw new NotImplementedException();
+            return contexte.Employes.Find(idEmploye);
         }
 
         public ICollection<Employe> RechercherTousEmployes()
         {
-            throw new NotImplementedException();
+            return contexte.Employes.ToList();
         }
 
         public ICollection<Employe> RechercherEmployesParNom(string nom, string prenom)
         {
-            throw new NotImplementedException();
+            IEnumerable<Employe> employes = this.RechercherTousEmployes().Where(e => e.Nom == nom && e.Prenom == prenom);
+            if (employes.Count() > 0)
+            {
+                return employes.ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public ICollection<Employe> RechercherTousSuperviseurs()

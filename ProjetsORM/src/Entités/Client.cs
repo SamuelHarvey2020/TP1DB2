@@ -9,10 +9,10 @@ namespace ProjetsORM.Entites
     public class Client
     {
         #region Propriétés
-        #endregion Propriétés
+
         [Key]
         [Column("NOM_CLIENT", TypeName = "varchar(10)")]
-        public short NomClient { get; set; }
+        public string NomClient { get; set; }
 
         [Required]
         public short NoEnregistrement { get; set; }
@@ -29,17 +29,24 @@ namespace ProjetsORM.Entites
         public string CodePostal { get; set; }                         // char ?= string
 
         [Column("TELEPHONE", TypeName = "decimal(10,0)")]
-        public string Telephone { get; set; }
+        public decimal? Telephone { get; set; }
+
+        #endregion Propriétés
+        //=========================================================================================
 
         #region Propriétés de navigation 
+        public virtual ICollection<Projet> ListeProjets { get; set; }
+
         #endregion Propriétés de navigation 
-        public virtual ICollection<Projet> Projets { get; set; }
+        //=========================================================================================
 
         #region Constructeur
-        #endregion Constructeur
         public Client()
         {
-            Projets = new List<Projet>();
+            ListeProjets = new List<Projet>();
         }
+
+        #endregion Constructeur
+
     }
 }
