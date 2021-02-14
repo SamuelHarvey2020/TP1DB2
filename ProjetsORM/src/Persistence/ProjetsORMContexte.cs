@@ -43,7 +43,7 @@ namespace ProjetsORM.Persistence
             //Lien vers Employé: "Superviseur"
             builder.Entity<Employe>()
                 .HasOne(emp => emp.Superviseur)                                //HasOne ? 0-1
-                .WithMany()
+                .WithMany(employes => employes.EmployesSupervises)
                 .OnDelete(DeleteBehavior.Restrict);
 
             /*** Entité Projet ***/

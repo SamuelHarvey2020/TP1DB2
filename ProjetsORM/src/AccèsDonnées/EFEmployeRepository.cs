@@ -52,12 +52,23 @@ namespace ProjetsORM.AccesDonnees
 
         public ICollection<Employe> RechercherTousSuperviseurs()
         {
-            throw new NotImplementedException();
+            // repenser code
+
+            IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.EmployesSupervises.Count() >= 0);
+            if (superviseurs.Count() > 0)
+            {
+                return superviseurs.ToList();
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public ICollection<Employe> ObtenirEmployesSupervises(short superviseurId)
         {
-            throw new NotImplementedException();
+            return contexte.Employes.Where(e => e.NoSuperviseur == superviseurId).ToList();
         }
         #endregion Méthodes
     }

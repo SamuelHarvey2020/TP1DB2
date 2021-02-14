@@ -3,6 +3,7 @@ using ProjetsORM.Entites;
 using ProjetsORM.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjetsORM.AccesDonnees
 {
@@ -13,7 +14,7 @@ namespace ProjetsORM.AccesDonnees
         #endregion Propriétés
         //==============================================================================================
         #region Constructeur
-        public EFProjetRepository (ProjetsORMContexte ctx)
+        public EFProjetRepository(ProjetsORMContexte ctx)
         {
             contexte = ctx;
         }
@@ -33,29 +34,41 @@ namespace ProjetsORM.AccesDonnees
 
         public void ModifierProjet(Projet projet)
         {
-            throw new NotImplementedException();
+            contexte.Projets.Update(projet);
+            contexte.SaveChanges();
         }
 
         public void SupprimerProjet(Projet projet)
         {
-            throw new NotImplementedException();
+            contexte.Projets.Remove(projet);
+            contexte.SaveChanges();
         }
 
         public decimal? ObtenirBudgetTotalPourUnClient(string nomClient)
         {
-            throw new NotImplementedException();
+            return contexte.Projets.Where(proj => proj.NomClient == nomClient).Sum(proj => proj.Budget);
         }
 
         public decimal? ObtenirBudgetMoyenPourUnClient(string nomClient)
         {
-            throw new NotImplementedException();
+            return contexte.Projets.Where(proj => proj.NomClient == nomClient).Average(proj => proj.Budget);
         }
 
         public ICollection<StatsClient> RechercherClientsAvecNombreProjetsEtBudgetTotalEtBudgetMoyen()
         {
-            throw new NotImplementedException();
+            contexte.Projets.GroupBy(proj => proj.NomClient)
+                                .Select(groupe => new
+                                {
+                                    NomClient = groupe.Key,
+                                    NombreProjets = groupe.Count(),
+                                    BudgetTotal = groupe.Sum(proj => proj.Budget),
+                                    BudgetMoyen = groupe.Average(proj => proj.Budget)
+                                });
 
+            return null;
         }
+
         #endregion Méthodes
     }
+
 }

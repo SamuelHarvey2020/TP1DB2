@@ -53,6 +53,7 @@ namespace ProjetsORM.Entites
 
         public virtual ICollection<Projet> ProjetsGestionnaires { get; set; }
         public virtual ICollection<Projet> ProjetsContactClient { get; set; }
+        public virtual ICollection<Employe> EmployesSupervises { get; set; }
 
         //Méthodes
         public override string ToString()
@@ -68,6 +69,7 @@ namespace ProjetsORM.Entites
         {
             ProjetsGestionnaires = new List<Projet>();
             ProjetsContactClient = new List<Projet>();
+            EmployesSupervises = new List<Employe>();
         }
 
         #endregion Constructeur
