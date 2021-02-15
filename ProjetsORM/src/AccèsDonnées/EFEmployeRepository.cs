@@ -29,12 +29,28 @@ namespace ProjetsORM.AccesDonnees
 
         public Employe ObtenirEmploye(short idEmploye)
         {
-            return contexte.Employes.Find(idEmploye);
+            Employe employe = contexte.Employes.Find(idEmploye);
+            if (employe != null)
+            {
+                return employe;
+            }
+            else
+            {
+                throw new ArgumentException("employee does not exist");
+            }
         }
 
         public ICollection<Employe> RechercherTousEmployes()
         {
-            return contexte.Employes.ToList();
+            IEnumerable < Employe > employes = contexte.Employes.ToList();
+            if (employes.Count() > 0)
+            {
+                return employes.ToList();
+            }
+            else
+            {
+                return new List<Employe>();
+            }
         }
 
         public ICollection<Employe> RechercherEmployesParNom(string nom, string prenom)
@@ -46,14 +62,12 @@ namespace ProjetsORM.AccesDonnees
             }
             else
             {
-                return null;
+                return new List<Employe>();
             }
         }
-
+        
         public ICollection<Employe> RechercherTousSuperviseurs()
         {
-            // repenser code
-
             //IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.EmployesSupervises.Count() >= 0);
             IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.Superviseur != null).Select(e => e.Superviseur);
             if (superviseurs.Count() > 0)
@@ -62,14 +76,22 @@ namespace ProjetsORM.AccesDonnees
             }
             else
             {
-                return null;
+                return new List<Employe>();
             }
             
         }
-
+     
         public ICollection<Employe> ObtenirEmployesSupervises(short superviseurId)
         {
-            return contexte.Employes.Where(e => e.NoSuperviseur == superviseurId).ToList();
+            ICollection<Employe> employesSupervises = contexte.Employes.Where(e => e.NoSuperviseur == superviseurId).ToList();
+            if (employesSupervises.Count() > 0)
+            {
+                return employesSupervises;
+            }
+            else
+            {
+                throw new ArgumentException("Ce superviseur n'a aucun employe supervisé");
+            }
         }
         #endregion Méthodes
     }
