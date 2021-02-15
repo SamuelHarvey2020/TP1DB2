@@ -54,7 +54,8 @@ namespace ProjetsORM.AccesDonnees
         {
             // repenser code
 
-            IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.EmployesSupervises.Count() >= 0);
+            //IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.EmployesSupervises.Count() >= 0);
+            IEnumerable<Employe> superviseurs = this.RechercherTousEmployes().Where(e => e.Superviseur != null).Select(e => e.Superviseur);
             if (superviseurs.Count() > 0)
             {
                 return superviseurs.ToList();

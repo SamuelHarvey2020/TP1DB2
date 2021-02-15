@@ -11,7 +11,7 @@ namespace ProjetsORM.Entites
         #region Propriétés
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public short NomProjet { get; set; }
+        public string NomProjet { get; set; }
 
         [Required]
         [Column("NOM_CLIENT", TypeName = "varchar(10)")]

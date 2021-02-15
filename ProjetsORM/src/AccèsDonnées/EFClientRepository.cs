@@ -28,7 +28,16 @@ namespace ProjetsORM.AccesDonnees
         }
         public Client ObtenirClient(string nomClient)
         {
-            return contexte.Clients.Find(nomClient);
+            Client client = contexte.Clients.Find(nomClient);
+            if (client != null)
+            {
+                return client;
+            }
+            else
+            {
+                throw new ArgumentException("client does not exist");
+            }
+
         }
 
         public ICollection<Client> RechercherClientParVille(string nomVille)
@@ -40,7 +49,7 @@ namespace ProjetsORM.AccesDonnees
             }
             else
             {
-                return null;
+                return new List<Client>();
             }
 
         }
@@ -58,16 +67,16 @@ namespace ProjetsORM.AccesDonnees
 
         public ICollection<StatsClient> RechercherClientsAvecNombreProjetsEtBudgetTotalEtBudgetMoyen()
         {
-            contexte.Projets.GroupBy(proj => proj.NomClient)
-                                                    .Select(groupe => new
-                                                    {
-                                                        NomClient = groupe.Key,
-                                                        NombreProjets = groupe.Count(),
-                                                        BudgetTotal = groupe.Sum(proj => proj.Budget),
-                                                        BudgetMoyen = groupe.Average(proj => proj.Budget)
-                                                    });
+            var resultatGb = contexte.Projets.GroupBy(proj => proj.NomClient)
+                                        .Select(groupe => new StatsClient
+                                        {
+                                            NomClient = groupe.Key,
+                                            NombreProjets = groupe.Count(),
+                                            BudgetTotal = groupe.Sum(proj => proj.Budget),
+                                            BudgetMoyen = groupe.Average(proj => proj.Budget)
+                                        }).ToList();
 
-            return null;
+            return resultatGb;
         }
         #endregion Méthodes
     }

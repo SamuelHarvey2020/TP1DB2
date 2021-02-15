@@ -56,18 +56,17 @@ namespace ProjetsORM.AccesDonnees
 
         public ICollection<StatsClient> RechercherClientsAvecNombreProjetsEtBudgetTotalEtBudgetMoyen()
         {
-            contexte.Projets.GroupBy(proj => proj.NomClient)
-                                .Select(groupe => new
-                                {
-                                    NomClient = groupe.Key,
-                                    NombreProjets = groupe.Count(),
-                                    BudgetTotal = groupe.Sum(proj => proj.Budget),
-                                    BudgetMoyen = groupe.Average(proj => proj.Budget)
-                                });
+            var resultatGb = contexte.Projets.GroupBy(proj => proj.NomClient)
+                                        .Select(groupe => new StatsClient
+                                        {
+                                            NomClient = groupe.Key,
+                                            NombreProjets = groupe.Count(),
+                                            BudgetTotal = groupe.Sum(proj => proj.Budget),
+                                            BudgetMoyen = groupe.Average(proj => proj.Budget)
+                                        }).ToList();
 
-            return null;
+            return resultatGb;
         }
-
         #endregion Méthodes
     }
 
