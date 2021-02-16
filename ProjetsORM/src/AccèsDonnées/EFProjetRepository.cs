@@ -29,7 +29,15 @@ namespace ProjetsORM.AccesDonnees
 
         public Projet ObtenirProjet(string nomProjet, string nomClient)
         {
-            return contexte.Projets.Find(nomProjet, nomClient);
+            Projet projet = contexte.Projets.Find(nomProjet, nomClient);
+            if (projet != null)
+            {
+                return projet;
+            }
+            else
+            {
+                throw new ArgumentException("employee does not exist");
+            }
         }
 
         public void ModifierProjet(Projet projet)

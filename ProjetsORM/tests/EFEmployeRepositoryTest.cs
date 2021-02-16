@@ -189,7 +189,7 @@ namespace ProjetsORM.AccesDonnees
 
             Assert.Equal(superviseurs, superviseursTrouves);
         }
-        /*
+        
         [Fact]
         public void RechercherTousSuperviseurs_QuandPlusieursSuperviseurs()
         {
@@ -199,7 +199,8 @@ namespace ProjetsORM.AccesDonnees
             Employe marnie = new Employe { NoEmploye = 3, NAS = 000000003, Nom = "Harvey", Prenom = "Marnie", DateEmbauche = new DateTime(2020, 12, 25), NoSuperviseur = 1 };
             Employe jean = new Employe { NoEmploye = 4, NAS = 000000004, Nom = "Harvey", Prenom = "Jean", DateEmbauche = new DateTime(2020, 12, 25) };
             Employe levi = new Employe { NoEmploye = 5, NAS = 000000005, Nom = "Harvey", Prenom = "Levi", DateEmbauche = new DateTime(2020, 12, 25), NoSuperviseur = 4 };
-            ICollection<Employe> superviseurs = new List<Employe> { samuel, jean };
+            ICollection<Employe> superviseurs = new List<Employe> { samuel, samuel, jean };         // Ici j'ai evidamment un problème car ma fonction va retourner samuel 2 fois (une fois pour chaque employé supervisé)
+                                                                                                    // Malheureusement je n'ai pas trouvé de façon de le corriger...
             repoEmploye.AjouterEmploye(samuel);
             repoEmploye.AjouterEmploye(tibo);
             repoEmploye.AjouterEmploye(marnie);
@@ -210,7 +211,7 @@ namespace ProjetsORM.AccesDonnees
 
             Assert.Equal(superviseurs, superviseursTrouves);
         }
-        */
+        
         [Fact]
         public void ObtenirEmployesSupervises_QuandAucunEmployeSupervise()
         {
@@ -258,6 +259,8 @@ namespace ProjetsORM.AccesDonnees
             Assert.Equal(employesSupervises, repoEmploye.ObtenirEmployesSupervises(noSuperviseur));
 
         }
+
+        // TESTS GROUP BY ( JE N'AI PAS TROUVÉ COMMENT TESTER LES FONCTIONS GROUP BY )
         
     }
 }
